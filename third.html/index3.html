@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Tasks</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>..Continued Tasks</h2>
+    <h3>20. Adding Salaries</h3>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Salaries</th>
+            <th>Age</th>
+        </tr>
+        <tr>
+            <td>Akash</td>
+            <td>50000</td>
+            <td>30</td>
+        </tr>
+        <tr>
+            <td>Dhruv</td>
+            <td>55000</td>
+            <td>27</td>
+        </tr>
+        <tr>
+            <td>Priyanka</td>
+            <td>60000</td>
+            <td>32</td>
+        </tr>
+        <tr>
+            <td>Rohit</td>
+            <td>45000</td>
+            <td>25</td>
+        </tr>
+        <tr>
+            <td>Yashvi</td>
+            <td>35000</td>
+            <td>26</td>
+        </tr>
+    </table>
+    <button onclick="calcSalaries()" style="margin-top: 4px;">Calc Salary Sum</button>
+    <p id="salaries"></p>
+
+    <h3>21. Filtering by Age</h3>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Salaries</th>
+            <th>Age</th>
+        </tr>
+        <tr>
+            <td>Akash</td>
+            <td>50000</td>
+            <td>30</td>
+        </tr>
+        <tr>
+            <td>Dhruv</td>
+            <td>55000</td>
+            <td>27</td>
+        </tr>
+        <tr>
+            <td>Priyanka</td>
+            <td>60000</td>
+            <td>32</td>
+        </tr>
+        <tr>
+            <td>Rohit</td>
+            <td>45000</td>
+            <td>25</td>
+        </tr>
+        <tr>
+            <td>Yashvi</td>
+            <td>35000</td>
+            <td>26</td>
+        </tr>
+    </table>
+    <button onclick="filteringByAge()" style="margin-top: 4px;">Filter By Age</button>
+    <p id="filter"></p>
+
+    <h3>22. forEach Loop</h3>
+    <p>Check console for results.</p>
+
+    <h3>23. Object in Console</h3>
+    <p>Check console for results.</p>
+
+    <h3>24. Adding property to Object</h3>
+    <p id="demo"></p>
+
+    <h3>25. Deleting property from object</h3>
+    <p id="deleting"></p>
+
+    <h3>26. Check if property exist in object or not</h3>
+    <label for="property">Enter Property Name:</label>
+    <input type="text" id="property" placeholder="e.g., age">
+    <button onclick="checkProperty()">Verify</button>
+    <p id="result"></p>
+
+    <h3>27. Reload a page on clicking button</h3>
+    <button onclick="reloadPage()">Reload Page</button>
+
+    <h3>28. Toggle button on click</h3>
+    <button id="colorBtn" onclick="toggleColor()"
+        style="padding: 10px; background: red; color: white; border: none; cursor: pointer;">Toggle Color</button>
+
+    <h3>29. Confirmation Pop-up</h3>
+    <button id="confirmBtn" data-active="false" onclick="confirmAction()">CLICK</button>
+
+    <h3>30. Alerting when hovered over button</h3>
+    <button onmouseover="showAlert()">Hover over me</button>
+    
+    <h3>31. Demonstration of ternary condition</h3>
+    <button onclick="checkStatus()">Check Status</button>
+    <p id="status"></p>
+
+    <h3>32. Generating Random Number</h3>
+    <button onclick="randomNum()">Generate</button>
+    <p id="random"></p>
+
+
+
+    <script>
+        function calcSalaries() {
+            const records = [
+                { id: 1, name: "Akash", age: 30, salary: 50000, mobile: "1234567890" },
+                { id: 2, name: "Dhruv", age: 28, salary: 55000, mobile: "9876543210" },
+                { id: 3, name: "Priyanka", age: 35, salary: 60000, mobile: "1122334455" },
+                { id: 4, name: "Rohit", age: 40, salary: 45000, mobile: "5566778899" },
+                { id: 5, name: "Yashvi", age: 25, salary: 35000, mobile: "6677889900" }
+            ];
+            const totalSalary = records.reduce((sum, record) => sum + record.salary, 0);
+            document.getElementById("salaries").textContent = `The total salary is: ${totalSalary}`;
+        }
+
+        function filteringByAge() {
+            const records = [
+                { id: 1, name: "Akash", age: 30, salary: 50000, mobile: "1234567890" },
+                { id: 2, name: "Dhruv", age: 28, salary: 55000, mobile: "9876543210" },
+                { id: 3, name: "Priyanka", age: 35, salary: 60000, mobile: "1122334455" },
+                { id: 4, name: "Rohit", age: 40, salary: 45000, mobile: "5566778899" },
+                { id: 5, name: "Yashvi", age: 25, salary: 35000, mobile: "6677889900" }
+            ];
+            const filteredRecords = records.filter(record => record.age > 25); //filtering records
+
+            //displaying filtered records
+            const resultText = filteredRecords.map(record =>
+                `ID: ${record.id}, Name: ${record.name}, Age: ${record.age}, Salary: $${record.salary}, Mobile: ${record.mobile}`
+            ).join("<br>");
+
+            //checks the length of array > 0
+            document.getElementById('filter').innerHTML = filteredRecords.length > 0
+                ? `Filtered Records:<br>${resultText}`
+                : "No records found with age greater than 25.";
+        }
+
+        const employees = [
+            { id: 1, name: "Akash", age: 30, salary: 50000, mobile: "1234567890" },
+            { id: 2, name: "Dhruv", age: 28, salary: 55000, mobile: "9876543210" },
+            { id: 3, name: "Priyanka", age: 35, salary: 60000, mobile: "1122334455" },
+            { id: 4, name: "Rohit", age: 40, salary: 45000, mobile: "5566778899" },
+            { id: 5, name: "Yashvi", age: 25, salary: 35000, mobile: "6677889900" }
+        ];
+        // employees.forEach(function(employee) {
+        //     console.log(employee.name);
+        // });
+        employees.forEach((employee, index) => {
+            console.log(employee.name);
+            console.log(index);
+        });
+
+        const worker = {
+            id: 1,
+            name: "Akash",
+            age: 30,
+            salary: 50000,
+            mobile: "123-456-7890"
+        }
+
+        console.log(worker);
+
+        const person = {
+            name: "Rahul",
+            age: 26,
+            eyecolor: "brown"
+        };
+
+        person.nationality = "Indian";
+        document.getElementById("demo").textContent = person.name + " is " + person.nationality + ".";
+
+        const persons = {
+            name: "Rahul",
+            age: 26,
+            eyecolor: "brown"
+        };
+        delete persons.age;
+        document.getElementById("deleting").innerHTML = persons.name + " is " + persons.age + " years old."
+
+        const people = {
+            name: "John",
+            age: 30,
+            city: "New York"
+        };
+
+        function checkProperty() {
+            let property = document.getElementById("property").value;
+            let result = document.getElementById("result");
+            people.has
+            if (property in people) {
+                result.textContent = `Yes, '${property}' exists in the object.`;
+                result.style.color = "green";
+            } else {
+                result.textContent = `No, '${property}' does not exist in the object.`;
+                result.style.color = "red";
+            }
+        }
+
+        function reloadPage() {
+            location.reload();
+        }
+
+        function toggleColor() {
+            let btn = document.getElementById("colorBtn");
+            // attribute set to true
+            let isActive = btn.getAttribute("data-active") === "true";//custom attribute which stores whether the button is active or not
+
+            // isActive -> true -> red, isActive -> false -> green
+            btn.style.background = isActive ? "red" : "green";
+            btn.style.color = "white";
+            //updating isActive, (isActive)true -> (data-active)false, false -> true
+            btn.setAttribute("data-active", isActive ? "false" : "true");
+        }
+
+        function confirmAction(){
+            let bttn = document.getElementById("confirmBtn");
+            //checking button current state; active -> true, inactive -> false
+            let isConfirm = bttn.getAttribute("data-active") === "true";
+            //confirmation pop-up
+            let userConfirmed = confirm("Are you sure?");
+            if(userConfirmed){
+                alert("Success!");
+
+            //data-active -> true -> red, data-active -> false -> green
+            bttn.style.backgroundColor = isConfirm ? "red" : "green";
+            //data-active attribute is flipped from true to false and vice-versa
+            bttn.setAttribute("data-active", isConfirm ? "false" : "true");
+            }
+        }
+
+        function showAlert(){
+            alert("You hovered over the button!");
+        }
+        
+        let isStatus = true; //boolean flag
+        function checkStatus(){
+           let message = isStatus ? "The status is Active ✔️" : "The status is Inactive ❌";
+           document.getElementById("status").innerText = message;
+           isStatus = !isStatus; //flipping the status
+        }
+
+        function randomNum(){
+            let x = Math.floor((Math.random() * 100) + 1);
+            document.getElementById("random").textContent = `The random number generated is ${x}`;
+        }
+    </script>
+</body>
+
+</html>

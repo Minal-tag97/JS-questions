@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Tasks</title>
+</head>
+
+<body>
+    <h2>..Continued Tasks</h2>
+    <h3>11. Count the no. of items in array</h3>
+    <p>Array: [1, 2, 3, 5, 6, 7, 8, 9, 10]</p>
+    <button onclick="countItems()">Count</button>
+    <p id="result"></p>
+
+    <h3>12. Sum of items of array</h3>
+    <p>Array: [1, 2, 3, 5, 6, 7]</p>
+    <button onclick="calcSum()">Summation</button>
+    <p id="outcome"></p>
+
+    <h3>13. Remove repeated items</h3>
+    <p> Array: [1, 2, 1, 5, 6, 7]</p>
+    <button onclick="removeRepeated()">Remove</button>
+    <p id="upshot"></p>
+
+    <h3>14. Split String and converting into Array</h3>
+    <p>String: "Hello, Good Morning, How are you?, "</p>
+    <button onclick="splitAndConvert()">Convert</button>
+    <p id="arr"></p>
+
+    <h3>15. Adding values at Start and End of an Array</h3>
+    <p>Array Before: [2, 3, 4, 5, 6]</p>
+    <button onclick="addValues()">Adding Values</button>
+    <p id="addVal"></p>
+
+    <h3>16. Removing values from start and end of an Array</h3>
+    <p>Array Before: [11, 12, 13, 14, 15, 16, 17]</p>
+    <button onclick="removeValues()">Remove Values</button>
+    <p id="removeVal"></p>
+
+    <h3>17. Adding and Removing Values in an array using Splice</h3>
+    <p>Array Before: [11, 12, 13, 14, 15, 16, 17]</p>
+    <button onclick="addUsingSplice()">Add</button>
+    <button onclick="removeUsingSplice()">Remove</button>
+    <p id="splicing"></p>
+
+    <h3>18. Modifying an Array using Slice</h3>
+    <p>Array Before: [1, 2, 3, 4, 5, 6, 7]</p>
+    <button onclick="modifyUsingSlice()">Modify</button>
+    <p id="modifying"></p>
+
+    <h3>19. Adding Objects in Array</h3>
+    <p>Array Before: [
+        {id: 1, name: "Aman", email: "aman@example.com"},
+        {id: 2, name: "Bhumita", email: "bhumita@example.com"}]
+    </p>
+    <button onclick="addObjects()">Add Objects</button>
+    <p id="addObject"></p>
+
+    <script>
+        function countItems() {
+            const array = [1, 2, 3, 5, 6, 7, 8, 9, 10];
+            const count = array.length;
+            document.getElementById("result").textContent = `The number of items in the array is : ${count}`;
+
+        }
+
+        function calcSum() {
+            const array = [1, 2, 3, 5, 6, 7];
+            const sum = array.reduce((total, value) => total + value, 0);
+            document.getElementById("outcome").textContent = `The sum is : ${sum}`;
+        }
+
+
+        function removeRepeated(){
+            const array = [1, 2, 1, 5, 6, 7];
+            const newArray = [...new Set(array)]; //set stores unique values and using spread converting back to array
+            document.getElementById("upshot").textContent =  `Array without duplicates: [${newArray.join(', ')}]`;
+        }
+
+        function splitAndConvert(){
+            const inputString = "Hello, Good Morning, How are you?,";
+            const resultArray = inputString.split(',').map(word => word.trim()).filter(word => word !== '');//split from , trim leading and trailing space & remove empty strings
+            document.getElementById('arr').textContent = `Array: [${resultArray.join(', ')}]`;
+        }
+
+        function addValues(){
+            const array = [2, 3, 4, 5, 6];
+            array.unshift(1);
+            array.push(7);
+            document.getElementById("addVal").textContent = `Array After: [${array.join(', ')}]`;
+        }
+
+        function removeValues(){
+            const array = [11, 12, 13, 14, 15, 16, 17];
+            array.shift();
+            array.pop();
+            document.getElementById("removeVal").textContent = `Array After: [${array.join(', ')}]`;
+        }
+
+        function addUsingSplice(){
+            const array = [11, 12, 13, 14, 15, 16, 17];
+            array.splice(0, 0, 9, 10);
+            document.getElementById("splicing").textContent = `Array after: [${array.join(', ')}]`;
+        }
+
+        function removeUsingSplice(){
+            const array = [11, 12, 13, 14, 15, 16, 17];
+            array.splice(5, 2);
+            document.getElementById("splicing").textContent = `Array after: [${array.join(', ')}]`;
+        }
+
+        function modifyUsingSlice(){
+            const array = [1, 2, 3, 4, 5, 6, 7];
+            const slicedArray = array.slice(2, 6); // slicing from index 2 to 6
+            slicedArray.splice(2,1) //removing element at index 2 i.e 5
+            document.getElementById("modifying").textContent = `Array after: [${slicedArray.join(', ')}]`; 
+        }
+
+        function addObjects(){
+            const array = [
+                {id: 1, name: "Aman", email: "aman@example.com"},
+                {id: 2, name: "Bhumita", email: "bhumita@example.com"}
+            ];
+            const newObject = {
+                id: 3,
+                name: "Kashish",
+                email: "kashish@example.com"
+            }
+            array.push(newObject);
+            document.getElementById("addObject").textContent = ` Array After: ${JSON.stringify(array, null, 2)}`;
+
+    
+        }
+    </script>
+</body>
+
+</html>
